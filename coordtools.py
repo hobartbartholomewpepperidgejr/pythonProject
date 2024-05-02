@@ -38,8 +38,6 @@ def move(s, x=0, y=0):
             s.x += x
         if s.y + y >= 0 and s.y + y <= ymax:
             s.y += y
-
-
     else:
         print("collision")
         raise Exception("sprite collision")
@@ -53,24 +51,27 @@ def screensave(screen):
             eval("screen" + screen + ".append('.')")
 
 def spacecheck(s, x=0, y=0):
-    tomove = []
-    name = s.__name__
     try:
+        tomove = []
+        name = s.__name__
+        w = 0
         for i in coordlist:
             if eval(i)["textvariable"] == name:
                 tomove.append(i)
         for i in tomove:
             a = int(i[i.index("x") + 1:i.index("y")]) + x
             b = int(i[i.index("y") + 1:]) + y
-            if a == -1:
-                a = int(i[i.index("x") + 1:i.index("y")])
-            if b == -1:
-                b = int(i[i.index("x") + 1:i.index("y")])
-            elif eval(coordconstructor(a, b))["textvariable"] != "" and eval(coordconstructor(a, b))["textvariable"] != name:
-                return False
+            if eval(coordconstructor(a, b))["textvariable"] != "" and eval(coordconstructor(a, b))["textvariable"] != name:
+                w = 1
+            elif coordconstructor(a, b) in coordlist:
+                w = 1
+        if w == 1:
+            return False
+        else:
+            return True
     except:
         return False
-    return True
+
 
 def coordsplitter(coord):
     a = int(coord[coord.index("x") + 1:coord.index("y")])

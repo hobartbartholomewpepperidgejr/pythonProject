@@ -16,7 +16,7 @@ class paddle2:
     c="#"
     order=["a", "b", "c"]
     x = 19
-    y = 0
+    y = 18
 class ball:
     a="#"
     order=["a",]
@@ -39,9 +39,7 @@ def pongloop():
     ct.drawsprite(paddle2, color="white")
     if not ct.spacecheck(ball, x=ball.hdirection):
         ball.hdirection *= -1
-    print(ct.spacecheck(ball, x=ball.hdirection))
-    print(ball.hdirection)
-    if not ct.spacecheck(ball, y=ball.vdirection):
+    elif not ct.spacecheck(ball, y=ball.vdirection):
         ball.vdirection *= -1
     print(ct.spacecheck(ball, y=ball.vdirection))
     print(ball.vdirection)
